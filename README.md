@@ -5,6 +5,10 @@ Laboratorio de **pruebas de performance con Apache JMeter** contra la
 (automatico por cron y manual), un **agente de IA** valida las respuestas y el
 resultado se publica como **reporte Markdown con graficas Mermaid**.
 
+> **Sitio de practicas (GitHub Pages):** https://lrbg.github.io/jmeter-pokeapi-lab/
+> Manual con 8 practicas de performance con JMeter para el equipo colaborador
+> (fuente en [`docs/index.html`](docs/index.html)).
+
 ## Infografia
 
 ![Laboratorio de performance con tematica Pokemon](infografia-completa.png)
