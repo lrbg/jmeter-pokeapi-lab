@@ -1,0 +1,22 @@
+{
+  "repo": "lrbg/jmeter-pokeapi-lab",
+  "generated_at": "2026-07-24T18:03:23Z",
+  "totals": {
+    "commits": 5,
+    "contributors": 1,
+    "prs_total": 0,
+    "prs_open": 0,
+    "prs_merged": 0,
+    "prs_closed": 0
+  },
+  "contributors": [
+    {
+      "login": "lrbg",
+      "avatar": "https://avatars.githubusercontent.com/u/7594601?v=4",
+      "url": "https://github.com/lrbg",
+      "commits": 5,
+      "prs_opened": 0,
+      "prs_merged": 0
+    }
+  ]
+}
