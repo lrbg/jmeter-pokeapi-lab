@@ -109,6 +109,24 @@
   td.fail{color:var(--rojo);font-weight:700}
   .tabla-scroll{overflow-x:auto}
 
+  .def{background:linear-gradient(135deg,var(--azul) 0%,#3b8fd6 100%);color:#fff;border-radius:var(--radio);
+    padding:18px 22px;box-shadow:var(--sombra);margin-top:8px}
+  .def b{color:#fff}
+  .def .ref{display:inline-block;margin-top:8px;font-size:12px;font-weight:800;letter-spacing:.08em;
+    text-transform:uppercase;color:#ffe27a}
+  .stdno{display:inline-block;font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:12px;
+    font-weight:800;color:#fff;background:var(--azul);padding:3px 9px;border-radius:6px;margin-bottom:10px}
+  .stdno.g{background:var(--verde)} .stdno.r{background:var(--rojo)} .stdno.y{background:var(--amarillo);color:var(--azul-osc)}
+  .formula{background:var(--azul-osc);color:#eaf1ff;border-radius:14px;padding:22px 18px;text-align:center;
+    box-shadow:var(--sombra);margin:16px 0}
+  .formula .eq{font-family:"SF Mono",ui-monospace,Menlo,Consolas,monospace;font-size:clamp(17px,3.4vw,24px);
+    font-weight:700;letter-spacing:.3px}
+  .formula .eq .y{color:var(--amarillo)} .formula .eq .r{color:#ff8a8a}
+  .formula .cap{color:#9fb6dd;font-size:13px;margin-top:10px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:16px}
+  .term{background:var(--panel);border:1px solid var(--linea);border-radius:12px;padding:14px 16px}
+  .term b{color:var(--tinta)} .term .sym{font-family:"SF Mono",ui-monospace,monospace;color:var(--rojo);font-weight:800}
+  td.pass{color:var(--verde);font-weight:700}
   footer{background:var(--azul-osc);color:#c9d6ee;padding:30px 0;margin-top:20px;font-size:14px}
   footer a{color:#ffd94d}
   footer .disc{color:#8ea3c9;font-size:12px;margin-top:10px}
@@ -270,6 +288,79 @@ python3 scripts/gen_report.py --out reports/report-local.md --date "local" \
         <li>Entrega un breve reporte con tus hallazgos: qué observaste y qué recomendarías.</li>
       </ol>
       <p class="exito"><b>Criterio de éxito:</b> un plan ejecutable en el laboratorio y un reporte con conclusiones defendibles.</p>
+    </div>
+  </div>
+</section>
+
+<section id="baseline" style="background:linear-gradient(180deg,rgba(42,117,187,.06),transparent)">
+  <div class="wrap">
+    <p class="kicker">Marco normativo</p>
+    <h2>Visión de línea base</h2>
+    <p class="lead">La <b>línea base</b> es la corrida de referencia contra la que se comparan las siguientes: si una medición nueva se desvía de forma significativa, es un hallazgo. El laboratorio fundamenta esa línea base en estándares ISO/IEC e ISTQB.</p>
+
+    <div class="def">
+      <b>Línea base (baseline):</b> conjunto de valores de rendimiento medidos y acordados como referencia formal. Toda corrida posterior se evalúa contra ella para detectar mejoras o regresiones.
+      <span class="ref">ISO/IEC/IEEE 24765 · vocabulario</span>
+    </div>
+
+    <div class="grid3" style="margin-top:22px">
+      <div class="card"><span class="stdno">ISO/IEC 25010</span><h3>Modelo de calidad</h3><p>Qué medimos: la característica <b>Eficiencia de desempeño</b> — comportamiento temporal, utilización de recursos y capacidad.</p></div>
+      <div class="card"><span class="stdno g">ISO/IEC 25023</span><h3>Medidas de calidad</h3><p>Cómo lo medimos: tiempo de respuesta (p50 / p95 / p99), throughput y % de error. Son las métricas del reporte.</p></div>
+      <div class="card"><span class="stdno y">ISO/IEC 25040</span><h3>Proceso de evaluación</h3><p>Cómo evaluamos: requisitos → especificación → diseño → ejecución → conclusión. El pipeline lo automatiza.</p></div>
+      <div class="card"><span class="stdno r">ISO/IEC/IEEE 29119</span><h3>Proceso de pruebas</h3><p>Cómo lo documentamos: planeación, diseño, ejecución y reporte. Los planes <code>.jmx</code> y el reporte son los artefactos.</p></div>
+      <div class="card"><span class="stdno">ISO/IEC/IEEE 24765</span><h3>Vocabulario común</h3><p>Lenguaje compartido: línea base, prueba de rendimiento, defecto, criterio de aceptación.</p></div>
+      <div class="card"><span class="stdno g">ISTQB</span><h3>Método</h3><p>La prueba de rendimiento es <b>no funcional</b>; la línea base es el criterio de comparación, con criterios de entrada y salida definidos.</p></div>
+    </div>
+
+    <h3 style="margin:30px 0 4px;color:var(--tinta);font-size:20px">Línea base actual del laboratorio</h3>
+    <p class="lead">Valores de referencia de las últimas corridas en verde (0% de error). Cada corrida futura se compara contra estos números.</p>
+    <div class="tabla-scroll">
+      <table>
+        <thead><tr><th>Escenario</th><th>Muestras</th><th>p95 (ms)</th><th>Throughput</th><th>% error</th><th>Veredicto</th></tr></thead>
+        <tbody>
+          <tr><td><b>smoke</b> — 3 usuarios / 30 s</td><td>160</td><td>27</td><td>5.5 req/s</td><td class="pass">0.0%</td><td class="pass">PASS</td></tr>
+          <tr><td><b>load</b> — 50 usuarios / 120 s</td><td>16 812</td><td>16</td><td>140 req/s</td><td class="pass">0.0%</td><td class="pass">PASS</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota">Mapeo 25010 / 25023: p95 = comportamiento temporal · throughput = capacidad · % de error = fiabilidad de la respuesta.</p>
+
+    <h3 style="margin:30px 0 4px;color:var(--tinta);font-size:20px">Criterios de entrada y salida <span style="font-weight:600;color:var(--suave);font-size:15px">(ISTQB · 29119)</span></h3>
+    <div class="grid3" style="margin-top:14px">
+      <div class="card"><h3>Entrada</h3><p>Plan <code>.jmx</code> válido, endpoints en el CSV y ambiente de Actions disponible.</p></div>
+      <div class="card"><h3>Salida</h3><p>Corrida completa, métricas generadas y veredicto del agente emitido.</p></div>
+      <div class="card"><h3>Comparación</h3><p>Se contrasta contra la línea base y los SLOs; una desviación dispara el cierre de ciclo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="usl">
+  <div class="wrap">
+    <p class="kicker">Escalabilidad entre ambientes</p>
+    <h2>Proyectar de QA a producción con la USL</h2>
+    <p class="lead">Cuando QA y producción <b>no están homologados</b> (prod tiene más CPU y RAM), no basta con extrapolar linealmente. La <b>Ley Universal de Escalabilidad</b> (USL, Neil Gunther) modela cómo escala realmente el throughput al agregar recursos, y permite proyectar prod a partir de mediciones en QA.</p>
+
+    <div class="formula">
+      <div class="eq">C(N) = N / ( 1 + <span class="y">α</span>(N−1) + <span class="r">β</span>·N(N−1) )</div>
+      <div class="cap">C(N): capacidad relativa (throughput) con N unidades &nbsp;·&nbsp; N: nodos, vCPUs o concurrencia</div>
+    </div>
+
+    <div class="terms">
+      <div class="term"><span class="sym">α</span> <b>Contención</b><br>Parte serializada que no paraleliza (locks, recurso único). Aplana la curva.</div>
+      <div class="term"><span class="sym">β</span> <b>Coherencia</b><br>Costo de coordinar nodos (sincronización, red). Con β&gt;0 el rendimiento se degrada tras el pico.</div>
+      <div class="term"><span class="sym">N*</span> <b>Punto óptimo</b><br>N* = √((1−α)/β). Más allá de N*, agregar recursos <b>empeora</b> el throughput.</div>
+    </div>
+
+    <h3 style="margin:30px 0 4px;color:var(--tinta);font-size:20px">Cómo aplicarla cuando QA ≠ prod</h3>
+    <div class="practica" style="border-left-color:var(--azul)">
+      <ol>
+        <li><b>Barrido en QA.</b> Corre <code>load</code> variando N (por ejemplo 5, 10, 20, 40, 80 usuarios o vCPUs) y registra el throughput X(N) de cada punto. Mínimo 5–6 puntos.</li>
+        <li><b>Ajusta la curva.</b> Haz una regresión USL sobre esos puntos para obtener <span class="sym" style="color:var(--rojo)">α</span> y <span class="sym" style="color:var(--rojo)">β</span>. La <b>forma</b> de la curva describe el software y la arquitectura, no el hardware: por eso α y β se conservan entre ambientes.</li>
+        <li><b>Homologa la base.</b> Mide la capacidad de <b>un</b> nodo o core en cada ambiente con un micro-benchmark de 1 hilo: obtienes C1<sub>QA</sub> y C1<sub>prod</sub>. El factor de hardware es C1<sub>prod</sub> / C1<sub>QA</sub>.</li>
+        <li><b>Proyecta prod.</b> Aplica <code>X_prod(N) ≈ C1_prod × C(N)</code>: escalas la capacidad base al hardware de prod y usas la misma curva (α, β) medida en QA. Así estimas throughput, N óptimo y punto de saturación de prod sin tenerlo homologado.</li>
+      </ol>
+      <p class="exito"><b>Entregable:</b> α, β y N* estimados, más la curva proyectada de prod con su throughput máximo.</p>
+      <p class="nota">Límite del modelo (principio ISTQB: probar depende del contexto): la USL asume nodos homogéneos y misma arquitectura de software. Si prod cambia topología (réplicas de BD, caché, red), α y β pueden cambiar. Valida siempre con <b>al menos un punto real</b> en prod antes de dar la proyección por firme.</p>
     </div>
   </div>
 </section>
