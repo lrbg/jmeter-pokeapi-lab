@@ -28,13 +28,13 @@ resultado se publica como **reporte Markdown con graficas Mermaid**.
 ## Ultimo reporte
 
 <!-- LATEST_REPORT_START -->
-**Ultima corrida:** 2026-09-25 17:47 UTC - Veredicto `PASS`  
-Reporte completo: [`reports/report-2026-09-25_1747.md`](reports/report-2026-09-25_1747.md)
+**Ultima corrida:** 2026-09-26 16:54 UTC - Veredicto `PASS`  
+Reporte completo: [`reports/report-2026-09-26_1654.md`](reports/report-2026-09-26_1654.md)
 
 | Escenario | Muestras | Error % | p95 (ms) | req/s |
 | --- | --- | --- | --- | --- |
-| load | 16084 | 0.0% | 37.0 | 134.42 |
-| smoke | 157 | 0.0% | 46.2 | 5.39 |
+| load | 17028 | 0.0% | 12.0 | 142.37 |
+| smoke | 163 | 0.0% | 19.0 | 5.57 |
 <!-- LATEST_REPORT_END -->
 
 ---
